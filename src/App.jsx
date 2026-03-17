@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useSpring, useMotionValue, AnimatePresence } from 'framer-motion';
 
-// --- 1. 애니메이션 및 물리 효과 설정 ---
+// --- 애니메이션 및 물리 효과 설정 ---
 const cursorSpring = { damping: 25, stiffness: 200 };
 const transition = { type: 'spring', stiffness: 300, damping: 30 };
 
@@ -17,7 +17,7 @@ const particleVariants = {
   })
 };
 
-// --- 2. 스타일 설정 (CSS-in-JS) ---
+// --- 스타일 설정 ---
 const styles = {
   container: {
     fontFamily: '"Pretendard Variable", sans-serif',
@@ -27,7 +27,7 @@ const styles = {
     padding: 0,
     overflowX: 'hidden',
     minHeight: '100vh',
-    cursor: 'none', // 커스텀 커서를 위해 기본 마우스 숨김
+    cursor: 'none', // 기본 마우스 숨김
     position: 'relative',
   },
   cursor: {
@@ -51,7 +51,7 @@ const styles = {
   bigTitle: { 
     fontSize: 'clamp(60px, 15vw, 180px)', fontWeight: '950', lineHeight: '0.8', 
     letterSpacing: '-8px', margin: 0, paddingBottom: '20px',
-    WebkitTextStroke: '2px #FFD700', color: 'transparent', // 방법 1: 테두리 효과
+    WebkitTextStroke: '2px #FFD700', color: 'transparent', // 테두리 효과
     transition: 'all 0.4s ease',
   },
   grid: {
@@ -108,11 +108,11 @@ function App() {
 
   return (
     <div style={styles.container} onClick={handlePageClick}>
-      {/* 🔦 전등 효과 & 커서 */}
+      {/* 전등 효과 & 커서 */}
       <motion.div style={{ ...styles.spotlight, x: springX, y: springY }} />
       <motion.div style={{ ...styles.cursor, x: springX, y: springY, translateX: '-50%', translateY: '-50%' }} />
 
-      {/* 💥 클릭 불꽃 효과 */}
+      {/* 클릭 불꽃 효과 */}
       <AnimatePresence>
         {clicks.map((click) => (
           <div key={click.id} style={{ position: 'absolute', left: click.x, top: click.y, pointerEvents: 'none', zIndex: 9998 }}>
